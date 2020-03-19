@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import Form from './Form'
 
 const ProductForm = (props) => {
     const [title, setTitle] = useState("")
@@ -25,22 +26,10 @@ const ProductForm = (props) => {
     }
 
     return(
-        <form onSubmit={onSubmitHandler}>
+        <div>
             <h1>Product Manager</h1>
-            <p>
-                <label>Title: </label>
-                <input type="text" onChange = { e => setTitle(e.target.value) } name="title" value={title}/>
-            </p>
-            <p>
-                <label>Price: </label>
-                <input type="number" step=".01" onChange = { e => setPrice(e.target.value) } name="price" value={price || ''}/>
-            </p>
-            <p>
-                <label>Description: </label>
-                <input type="text" onChange = { e => setDescription(e.target.value) } name="description" value={description}/>
-            </p>
-            <input type="submit" value="Create" />
-        </form>
+            <Form title={title} price={price} description={description} setTitle={setTitle} setPrice={setPrice} setDescription={setDescription} onSubmitHandler={onSubmitHandler}/>
+        </div>
     )
 }
 export default ProductForm

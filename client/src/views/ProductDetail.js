@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link, navigate } from '@reach/router'
 import axios from 'axios'
+import DeleteButton from '../components/DeleteButton'
 
 export default (props) => {
+    const [update, setUpdate] = useState(false) // not in use
     const [product, setProduct] = useState({})
     useEffect(() => {
         axios.get('http://localhost:8000/api/products/'+props.id)
@@ -11,19 +13,13 @@ export default (props) => {
             }))
     }, [])
 
-    const deleteProduct = e => {
-        // console.log(e.target.id)
-        axios.delete('http://localhost:8000/api/products/' +  e.target.id)
-            .then(res => navigate('/'))
-    }
-
-    return(
+    return( 
         <div>
             <h1>{product.title}</h1>
             <p>Price: {product.price}</p>
             <p>Description: {product.description}</p>
-            <p> <Link to={"/"+product._id+"/edit"}>Update</Link></p>
-            <p> <button onClick={deleteProduct} id={product._id}>Delete</button></p>
+            <p><Link to={"/"+product._id+"/edit"}>Update</Link></p>
+            <DeleteButton id={product._id} update={update} setUpdate={setUpdate}/>
         </div>
     )
 }

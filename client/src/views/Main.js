@@ -12,15 +12,11 @@ export default () => {
             .then(res => setProducts(res.data))
     }, [update])
 
-    const removeFromDom = (productId) => {
-        setProducts(products.filter(product => product._id != productId))
-    }
-
     return(
         <div>
             <ProductForm update={update} setUpdate={setUpdate}/>
             <hr />
-            <ProductList products={products} removeFromDom={removeFromDom}/>    {/* pass function removeFromDom to props */}
+            <ProductList products={products} update={update} setUpdate={setUpdate}/>    {/* pass function removeFromDom to props */}
         </div>
     )
 }
