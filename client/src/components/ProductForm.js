@@ -16,7 +16,6 @@ const ProductForm = (props) => {
             description
         })
             .then(res => {
-                console.log(res)
                 setUpdate(!update)
                 setTitle('')
                 setPrice()
